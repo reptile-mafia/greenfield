@@ -355,6 +355,21 @@ app.get('/db_init', (req, res) => {
   });
 });
 
+
+app.get('/test/:id', (req, res) => {
+  var params = {
+    id: req.params.id + '',
+    part: 'snippet',
+  }
+  youtube.videos.list(params, (err, resp) => {
+    if (err) {
+      res.status(400).send();
+    } else {
+      console.log(JSON.stringify(resp));
+      res.status(200).send(resp)
+    }
+  });
+});
 /*
   ***********************************************************************
   Responds to requests to add more videos to a channel.
