@@ -19,7 +19,7 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <ul className="dropdown menu align-right" data-dropdown-menu>
-        <li><a href="/">Logout</a></li>
+        <li><a href="#">Mixtape</a></li>
         <li className="is-dropdown-submenu-parent">
           <a>Channels</a>
           <ul className="menu">
@@ -29,7 +29,7 @@ export default class NavBar extends React.Component {
           </ul>
         </li>
         <li value="'default'" onClick={(e) => this.handleChange(e.currentTarget.value)}>
-          <a>Home</a>
+          <h1><a>CAT TANK</a></h1>
         </li>
       </ul>
     );
