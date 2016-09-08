@@ -260,10 +260,11 @@ knex.getChannelById = (channelId) => {
   ***********************************************************************
 */
 
+//LOOK AT THIS
 knex.addVideos = (videosArray, channelId) => {
   let successMessage = '';
   let videos = [];
-
+ console.log(videosArray)
   return Promise.all(
     videosArray.map(video => knex('videos').where('url', video.id.videoId))
   )
@@ -370,12 +371,14 @@ knex.initDB = () => Promise.all([
     { id: 1, name: 'Kittens', background: 'https://static.pexels.com/photos/9056/pexels-photo.jpg' },
     { id: 2, name: 'Cats Being Jerks', background: 'https://texasagriculture.gov/portals/0/images/prodagg/fire.jpg' },
     { id: 3, name: 'Neko', background: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/The_Great_Wave_off_Kanagawa.jpg' },
+
   ]),
   knex('users').insert([
     { username: 'CDE'   , password: '$2a$08$Nxke/Uo4lyszdj8HOQyB0eYL/XRMx2MbgvPELLBiEBd9BHEfplLde'},
     { username: 'CHI'   , password: '$2a$08$RdRSvizmfF9BH1VnCWh.yeIOYryIcFKbPVWXp2JyFv2Z9OFmdf71O'},
   ]),
   knex('videos').insert([
+
 
     { url: 'mmjlMgDSYFo', channel_id: 1 },
     { url: 'OtRRUEs3o0c', channel_id: 1 },
