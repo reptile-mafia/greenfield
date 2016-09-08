@@ -21,7 +21,8 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="row column">
+        <div className="row">
+        <div className="medium-6 columns">
 
           <ul className="dropdown menu align-left" data-dropdown-menu>
             <li value="'default'" onClick={(e) => this.handleChange(e.currentTarget.value)}>
@@ -37,17 +38,18 @@ export default class NavBar extends React.Component {
             </li>
             <li><a href="#">Mixtape</a></li>
           </ul>
+
+        </div>
+        <div className="medium-6 columns" id="logsign-buttons">
         
           <button className="button" type="button" data-toggle="example-dropdown-1">Login</button>
           <div className="dropdown-pane dropdown" id="example-dropdown-1" data-dropdown data-auto-focus="true">
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="username">Username:</label>
               <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-              <br />
               <label htmlFor="password">Password:</label>
               <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-              <br />
-              <input type="submit" value="Log In" />
+              <input className="submit-dd" type="submit" value="Log In" />
             </form>
           </div>
           
@@ -56,14 +58,13 @@ export default class NavBar extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="username">Username:</label>
               <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-              <br />
               <label htmlFor="password">Password:</label>
               <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-              <br />
-              <input type="submit" value="Sign Up" />
+              <input className="submit-dd" type="submit" value="Sign Up" />
             </form>
           </div>
 
+        </div>
         </div>
       </div>
     );

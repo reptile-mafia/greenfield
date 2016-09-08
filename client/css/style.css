@@ -27,7 +27,29 @@ h1, h2 {
 }
 #login-section, #signup-section {
   line-height: 1.0;
+}
 
+#logsign-buttons {
+  text-align: right;
+}
+
+#logsign-buttons button {
+  margin: 1em;
+  padding: .5em 1em;
+  border-radius: 5px;
+  width: 80px;
+}
+
+.dropdown-pane {
+  background-color: #e7e7ee;
+  text-align: left;
+}
+
+.submit-dd {
+  background-color: #2199e8;
+  color: white;
+  border: none;
+  min-width: 50%;
 }
 
 .menu {
