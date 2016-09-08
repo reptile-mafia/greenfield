@@ -237,7 +237,7 @@ app.get('/channelInfo', function(req, res){
 */
 
 app.get('/channel/:id', (req, res) => {
-  // Build channel object for response
+  // Build channel object for respon
   if (req.params.id === '1' || req.params.id === '2' || req.params.id === '3') {
     db.getChannelById(req.params.id)
     .then(channelResObj => {
@@ -313,7 +313,12 @@ app.get('/channel/:id/likes', (req, res) => {
   ***********************************************************************
 */
 
+<<<<<<< 7d388651b9a23cf5521130e6b9f7776708b44c20
 app.post('/likes/create', isLoggedIn, (req, res) => {
+=======
+app.post('/likes/create', (req, res) => {
+
+>>>>>>> Building videoDescription component
   db.createLike(req.body)
   .then(newLike => {
     res.send(newLike);
@@ -391,11 +396,12 @@ app.get('/test/:id', (req, res) => {
     part: 'snippet',
   }
   youtube.videos.list(params, (err, resp) => {
+    
     if (err) {
       res.status(400).send();
     } else {
       
-      res.status(200).send(resp)
+      res.status(200).send(resp.items[0].snippet.title)
     }
   });
 });
@@ -421,14 +427,12 @@ app.get('/videos/:id', (req, res) => {
 
     youtube.search.list(params, (err, resp) => {
 
-      console.log("YOUTUBE", err, "RESP", resp);
-
       if (err) {
         res.status(404).send('Search failed.  Youtube\'s fault');
       } else if (resp.items.length) {
 
-
         db.addVideos(resp.items, req.params.id)
+
         .then((videos) => {
           
           res.status(200).send(videos);

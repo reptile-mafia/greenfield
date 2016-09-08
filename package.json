@@ -6,8 +6,9 @@
   "scripts": {
     "start": "nodemon -r dotenv/config server/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+
     "delete_lock": "echo 'delete from knex_migrations_lock' | psql -d greenfield_vplayer"
-  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reptile-mafia/VideoHighlight.git"
