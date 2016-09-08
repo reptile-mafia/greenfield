@@ -1,10 +1,10 @@
 import React from 'react';
+import NavBar from './NavBar';
 
 export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {username: 'username', password: 'password'};
   }
 
   componentWillMount() {
@@ -14,10 +14,6 @@ export default class LoginPage extends React.Component {
   }
 
   componentDidUpdate() {
-  }
-
-  getInitialState() {
-    return {username: 'username', password: 'password'};
   }
 
   handleUsernameChange(event) {
@@ -46,20 +42,15 @@ export default class LoginPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <section id="login-section">
-          <h2>Login</h2>
-          <form id="login-form" onSubmit={this.handleSubmit}>
-            <label for="username">Username:</label>
-            <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-            <br />
-            <label for="password">Password:</label>
-            <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-            <br />
-            <input type="submit" value="Log In" />
-          </form>
-        </section>
-      </div>
+      <form id="login-form" onSubmit={this.handleSubmit}>
+        <label htmlFor="username">Username:</label>
+        <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+        <br />
+        <label htmlFor="password">Password:</label>
+        <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
+        <br />
+        <input type="submit" value="Log In" />
+      </form>
     );
   }
 }
