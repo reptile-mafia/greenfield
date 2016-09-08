@@ -42,14 +42,12 @@ export default class LoginPage extends React.Component {
 
   render() {
     return (
-      <form id="login-form" onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-        <br />
         <label htmlFor="password">Password:</label>
         <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-        <br />
-        <input type="submit" value="Log In" />
+        <input className="submit-dd" type="submit" value="Log In" />
       </form>
     );
   }

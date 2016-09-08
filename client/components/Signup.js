@@ -42,15 +42,13 @@ export default class SignupPage extends React.Component {
 
   render() {
     return (
-        <form id="signup-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-          <br />
-          <input type="submit" value="Sign Up" />
-        </form>
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="username">Username:</label>
+        <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+        <label htmlFor="password">Password:</label>
+        <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
+        <input className="submit-dd" type="submit" value="Sign Up" />
+      </form>
     );
   }
 }

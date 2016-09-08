@@ -42,26 +42,14 @@ export default class NavBar extends React.Component {
         </div>
         <div className="medium-6 columns" id="logsign-buttons">
         
-          <button className="button" type="button" data-toggle="example-dropdown-1">Login</button>
-          <div className="dropdown-pane dropdown" id="example-dropdown-1" data-dropdown data-auto-focus="true">
-            <form onSubmit={this.handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-              <label htmlFor="password">Password:</label>
-              <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-              <input className="submit-dd" type="submit" value="Log In" />
-            </form>
+          <button className="button" type="button" data-toggle="login-dropdown">Login</button>
+          <div className="dropdown-pane dropdown" id="login-dropdown" data-dropdown data-auto-focus="true">
+          <Login />
           </div>
           
-          <button className="button" type="button" data-toggle="example-dropdown-2">Signup</button>
-          <div className="dropdown-pane dropdown" id="example-dropdown-2" data-dropdown data-auto-focus="true">
-            <form onSubmit={this.handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-              <label htmlFor="password">Password:</label>
-              <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-              <input className="submit-dd" type="submit" value="Sign Up" />
-            </form>
+          <button className="button" type="button" data-toggle="signup-dropdown">Signup</button>
+          <div className="dropdown-pane dropdown" id="signup-dropdown" data-dropdown data-auto-focus="true">
+          <Signup />
           </div>
 
         </div>
