@@ -376,6 +376,7 @@ knex.initDB = () => Promise.all([
     { username: 'CHI'   , password: '$2a$08$RdRSvizmfF9BH1VnCWh.yeIOYryIcFKbPVWXp2JyFv2Z9OFmdf71O'},
   ]),
   knex('videos').insert([
+
     { url: 'mmjlMgDSYFo', channel_id: 1 },
     { url: 'OtRRUEs3o0c', channel_id: 1 },
     { url: 'LI7-Cu-9wWM', channel_id: 1 },
@@ -385,6 +386,7 @@ knex.initDB = () => Promise.all([
     { url: 'TdPuwnMv3gA', channel_id: 3 },  // 3 is japanese cat
     { url: 'C9O28ne6bG8', channel_id: 3 },
     { url: 'JTDdHYUb6zU', channel_id: 3 },
+
   ]),
   knex('likes').insert([
     { start_time: 23, stop_time: 48, video_id: 1, channel_id: 1 },

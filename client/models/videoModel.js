@@ -3,6 +3,7 @@
 // moments are highlight clips within a currently playing video
 export const Moment = (element, moment, player, userId) => {
   const momentObj = moment;
+  console.log('moment', moment)
 
   const likeWindow = $('<div>').addClass('likeWindow').html(`
     <i class="fa fa-thumbs-up"></i>
