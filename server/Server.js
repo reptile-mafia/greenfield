@@ -474,29 +474,3 @@ app.get('/mixtape/user/:id', (req, res) => {
 app.listen(serverUrl);
 console.log(serverMessage);
 
-
-
-
-// {
-//   "kind": "youtube#videoListResponse",
-//   "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/VWTQZzpCz87G-HzrwLxLborUOYE\"",
-//   "pageInfo": {
-//     "totalResults": 1,
-//     "resultsPerPage": 1
-//   },
-//   "items": [
-//     {
-//       "kind": "youtube#video",
-//       "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/PlxazYEaMQI2nYFE3MSOf2jlzoY\"",
-//       "id": "DXUFAI-6qDY",
-//       "snippet": {
-//         "publishedAt": "2016-04-06T12:00:11.000Z",
-//         "channelId": "UCa6vGFO9ty8v5KZJXQxdhaw",
-//         "title": "Behind the Scenes with Jimmy Kimmel and Audience (Twin Brothers)",
-//         "description": "During a commercial break, Jimmy talks with identical twin brothers from Oklahoma.\n\nDeleted Scene from \"Ba
-
-
-
-
-
-
