@@ -24,7 +24,7 @@ export default class AddVideo extends React.Component {
       console.log('Adding the following url: ', this.state.url);
       let videoId = q[1];
       console.log('videoId: ', videoId);
-      addVideoToChannel(videoId, 1)
+      addVideoToChannel(videoId, this.props.channelId)
         .then(() => {
           this.setState({
             added: true,
@@ -40,7 +40,7 @@ export default class AddVideo extends React.Component {
           })
         });
     } else {
-      console.log('Failed. No ID in URL');
+      console.log('Failed. No ID in URL.');
       this.setState({
         added: false,
         failed: true,
@@ -57,9 +57,9 @@ export default class AddVideo extends React.Component {
             value={ this.state.url }
             onChange={ (e) => this.setState({ url: e.target.value }) }
           />
-          <input type="submit" value="Add Youtube Video"/>
+          <input type="submit" value={ "Add A Youtube Video to Channel " + this.props.channelId}/>
         </form>
-        { this.state.failed ? <span className='errorMessage'>Sorry, unable to add video.</span>   : null }
+        { this.state.failed ? <span className='errorMessage'>Sorry, Unable To Add Video.</span> : null }
         { this.state.added  ? <span className='successMessage'>Video Added!</span> : null }
       </div>
     );
