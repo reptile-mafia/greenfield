@@ -6,28 +6,26 @@ export default class VideoDescription extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			url : ''
+			url : '',
+			title: ''
 		}
-
-		
 
 		getDescription(props.url)
 			.then( title => {
-				this.setState = ({
+				
+				this.setState({
 					title: title
 				});
-			});
+				
+			}).fail(err => console.log(err));
 	}
 
 
 	render(){
 		return(
-
 			<div>
-				
 				<div className= "details">
-					
-					<Title/>
+					<h2>{ this.state.title }</h2>
 					<div>Description</div>
 				</div>
 			</div>
