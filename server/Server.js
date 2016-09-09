@@ -132,10 +132,6 @@ app.get('/', (req, res) => {
   ***********************************************************************
 */
 
-app.get('/login', function (req, res) {
-  //?
-});
-
 app.post('/login',
   passport.authenticate('local', {
       successRedirect: '/loginSuccess',
@@ -146,19 +142,6 @@ app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
-
-app.get('/signup', function(req, res) {
-    //res.render('signup.ejs', { message: req.flash('signupMessage') });
-});
-
-// app.post('/signup', function(req,res){
-//   console.log("sing up, body", req.body, "data: ", req.data);
-
-//   passport.authenticate('local-signup', {
-//       successRedirect: '/loginSuccess',
-//       failureRedirect: '/loginFail'
-//   })(req)
-// });
 
 app.post('/signup',
   passport.authenticate('local-signup', {
@@ -196,12 +179,24 @@ app.get('/testPage', function(req, res){
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()){
-      console.log("is auth!")
       return next();
     }
-
     res.send("you shall not pass")
 }
+
+/*
+  ***********************************************************************
+  Responds to request for channel info.
+
+  Response object:  array of channel info
+  ***********************************************************************
+*/
+app.get('/channelInfo', function(req, res){
+   db.getChannelInfo()
+   .then((channelInfo)=>{
+    res.send(channelInfo)
+   })
+});
 
 /*
   ***********************************************************************
@@ -318,7 +313,7 @@ app.get('/channel/:id/likes', (req, res) => {
   ***********************************************************************
 */
 
-app.post('/likes/create', (req, res) => {
+app.post('/likes/create', isLoggedIn, (req, res) => {
   db.createLike(req.body)
   .then(newLike => {
     res.send(newLike);
@@ -346,7 +341,7 @@ app.post('/likes/create', (req, res) => {
   ***********************************************************************
 */
 
-app.post('/likes/update', (req, res) => {
+app.post('/likes/update', isLoggedIn, (req, res) => {
   db.updateLike(req.body)
   .then(newLike => {
     res.send(newLike);
