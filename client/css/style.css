@@ -78,6 +78,11 @@ h5 {
   margin: 8px auto;
 }
 
+.orline {
+  color: #2199e8;
+  margin-top: 12px;
+}
+
 .errorMessage {
   color: red;
 }
