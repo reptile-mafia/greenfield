@@ -313,12 +313,9 @@ app.get('/channel/:id/likes', (req, res) => {
   ***********************************************************************
 */
 
-<<<<<<< 7d388651b9a23cf5521130e6b9f7776708b44c20
-app.post('/likes/create', isLoggedIn, (req, res) => {
-=======
-app.post('/likes/create', (req, res) => {
 
->>>>>>> Building videoDescription component
+app.post('/likes/create', isLoggedIn, (req, res) => {
+
   db.createLike(req.body)
   .then(newLike => {
     res.send(newLike);
