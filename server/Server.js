@@ -128,7 +128,7 @@ app.get('/', (req, res) => {
   ***********************************************************************
   Auth through passport
 
-  Response object:  Index.html file
+  Response object:  user onject if success, 500 with error string if fail
   ***********************************************************************
 */
 
@@ -140,7 +140,7 @@ app.post('/login',
 
 app.get('/logout', function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.send('logout success');
 });
 
 app.post('/signup',
@@ -150,7 +150,6 @@ app.post('/signup',
 }));
 
 app.get('/loginSuccess', isLoggedIn, function(req, res){
-    console.log("LOGIN FAIL",req);
     var result = {
       errorMessage:"", //error message
       username:req.user.username,
@@ -160,8 +159,7 @@ app.get('/loginSuccess', isLoggedIn, function(req, res){
   }
 );
 
-app.get('/loginFail', function(req, res){
-  console.log("LOGIN FAIL",req.session.messages);
+app.get('/loginFail', function(req, res){ // should not get here
     var result = {
       errorMessage:"", 
       username:"",
@@ -171,8 +169,7 @@ app.get('/loginFail', function(req, res){
   }
 );
 
-app.all('/testPage', isLoggedIn);
-app.get('/testPage', function(req, res){
+app.get('/testPage', isLoggedIn, function(req, res){
   console.log("print out user info", req.user)
   res.send('You are allow')
 });
@@ -315,8 +312,8 @@ app.get('/channel/:id/likes', (req, res) => {
 
 
 app.post('/likes/create', isLoggedIn, (req, res) => {
-
-  db.createLike(req.body)
+  console.log("LIKE!", req.body, req.user)
+  db.createLike(req.body, req.user)
   .then(newLike => {
     res.send(newLike);
   });
