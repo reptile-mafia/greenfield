@@ -64,16 +64,21 @@ export default class LoginPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <label htmlFor="username">Username:</label>
-          <input type="text" placeholder="username" onChange={this.handleUsernameChange} />
-          <label htmlFor="password">Password:</label>
-          <input type="password" placeholder="password" onChange={this.handlePasswordChange} />
-          <button type="button" className="submit-dd" onClick={this.handleSubmit} >Login</button>
-        </form>
-        <p className="errorMessage"> { this.state.errorMessage ? this.state.errorMessage : null } </p>
+      <span>
+      <button className="button" type="button" data-toggle="login-dropdown">Login</button>
+      <div className="dropdown-pane dropdown" id="login-dropdown" data-dropdown data-auto-focus="true">
+        <div>
+          <form>
+            <label htmlFor="username">Username:</label>
+            <input type="text" placeholder="username" onChange={this.handleUsernameChange} />
+            <label htmlFor="password">Password:</label>
+            <input type="password" placeholder="password" onChange={this.handlePasswordChange} />
+            <button type="button" className="submit-dd" onClick={this.handleSubmit} >Login</button>
+          </form>
+          <p className="errorMessage"> { this.state.errorMessage ? this.state.errorMessage : null } </p>
+        </div>
       </div>
+      </span>
     );
   }
 }

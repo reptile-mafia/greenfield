@@ -54,15 +54,9 @@ export default class NavBar extends React.Component {
         <div className="medium-6 columns" id="logsign-buttons">
 
           { this.props.signedin ? <span>"Signed In!!!!!"</span> : null }
-          <button className="button" type="button" data-toggle="login-dropdown">Login</button>
-          <div className="dropdown-pane dropdown" id="login-dropdown" data-dropdown data-auto-focus="true">
           <Login declareSignedIn={(username) => this.props.declareSignedIn(username)}/>
-          </div>
 
-          <button className="button" type="button" data-toggle="signup-dropdown">Signup</button>
-          <div className="dropdown-pane dropdown" id="signup-dropdown" data-dropdown data-auto-focus="true">
           <Signup declareSignedIn={(username) => this.props.declareSignedIn(username)} />
-          </div>
           
          </div>
         </div>
