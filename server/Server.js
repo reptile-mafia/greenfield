@@ -152,7 +152,7 @@ app.post('/signup', //local
 app.get('/login-facebook', passport.authenticate('facebook'));
 
 app.get('/login-facebook/callback',
-  passport.authenticate('facebook', { 
+  passport.authenticate('facebook', {
       successRedirect: '/loginSuccess',
       failureRedirect: '/loginFail'
 }));
@@ -403,7 +403,6 @@ app.get('/test/:id', (req, res) => {
     if (err) {
       res.status(400).send();
     } else {
-
       res.status(200).send(resp.items[0].snippet.title);
     }
   });
@@ -433,7 +432,7 @@ app.get('/videos/:id', (req, res) => {
       if (err) {
         res.status(404).send('Search failed.  Youtube\'s fault');
       } else if (resp.items.length) {
-
+        // console.log(resp.items, req.params.id);
         db.addVideos(resp.items, req.params.id)
 
         .then((videos) => {
@@ -449,6 +448,21 @@ app.get('/videos/:id', (req, res) => {
   }
 });
 
+// Enpoint for adding videos to channels
+app.post('/channel/:channelId/video/:videoId', (req, res) => {
+  console.log('params', req.params);
+  console.log('videoId', req.params.videoId);
+  if (req.params.channelId !== '1' && req.params.channelId !== '2' && req.params.channelId !== '3') {
+    res.status(400).send('Invalid Channel ID');
+  }
+  // Format data into the format that addVideos expects
+  // TODO: validate this id somehow
+  let items = [{ id: { kind: 'youtube#video', videoId: req.params.videoId }}];
+  db.addVideos(items, req.params.channelId)
+    .then((videos) => {
+      res.status(200).send(videos);
+    });
+});
 /*
   Endpoint for Mixtape --> Returns JSON Array of likes by a userId
 */
