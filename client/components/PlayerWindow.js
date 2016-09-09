@@ -75,18 +75,24 @@ export default class PlayerWindow extends React.Component {
     const updatedList = list || this.state.videoList;
     this.checkVideoListLength(updatedList)
     .then(videos => {
+      let video = videos.shift();
       this.setState({
-        currentVideo: videos.shift(),
+        currentVideo: video,
         videoList: videos,
         channel_id: this.props.channel_id,
       });
+      // Fire video change callback
+      this.props.onVideoChange(video.url);
     })
     .catch(() => {
+      let video = updatedList.shift();
       this.setState({
-        currentVideo: updatedList.shift(),
+        currentVideo: video,
         videoList: updatedList,
         channel_id: this.props.channel_id,
       });
+      // Fire video change callback
+      this.props.onVideoChange(video.url);
     });
   }
 
@@ -370,4 +376,5 @@ PlayerWindow.propTypes = {
   videos: React.PropTypes.array,
   channel_id: React.PropTypes.any,
   user_id: React.PropTypes.any,
+  onVideoChange: React.PropTypes.func
 };

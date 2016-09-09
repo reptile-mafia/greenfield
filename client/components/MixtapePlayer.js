@@ -23,15 +23,21 @@ export default class MixtapePlayer extends React.Component {
       .then((iter) => {
         if (iter !== null) {
           this.momentIterator = iter;
-          this.setState({
-            currentVideo: {
-              url: iter.nextVideo(),
-            }
-          });
+          var url = iter.nextVideo();
+          this.setVideoUrlState(url);
           this.currentMoment = iter.nextMoment();
         }
       });
 
+  }
+
+  setVideoUrlState(url) {
+    this.props.onVideoChange(url)
+    this.setState({
+      currentVideo: {
+        url: url
+      }
+    });
   }
 
   // Sets current video
@@ -53,11 +59,7 @@ export default class MixtapePlayer extends React.Component {
           //  We do! set the url for currentVideo so the youtube player can advance
           var url = momentIterator.nextVideo();
           var moment = momentIterator.nextMoment();
-          this.setState({
-            currentVideo: {
-              url: url
-            }
-          });
+          this.setVideoUrlState(url);
           this.currentMoment = moment;
           // Schedule next updateVideo timeout
           this.updateVideo(momentIterator, player,
@@ -65,11 +67,8 @@ export default class MixtapePlayer extends React.Component {
           // We don't have any more moments or videos -- reset and loop again!
         } else {
           this.momentIterator.reset();
-          this.setState({
-            currentVideo: {
-              url: this.momentIterator.nextVideo()
-            }
-          });
+          var url = iter.nextVideo();
+          this.setVideoUrlState(url);
           this.currentMoment = this.momentIterator.nextMoment();
         }
       } else {
@@ -150,4 +149,5 @@ export default class MixtapePlayer extends React.Component {
 
 MixtapePlayer.propTypes = {
   //user_id: React.PropTypes.any,
+  onVideoChange: React.PropTypes.func,
 };
