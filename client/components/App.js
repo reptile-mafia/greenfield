@@ -18,11 +18,24 @@ export default class App extends React.Component {
       channel_id: 'default',
       id: 0,
       showMixtape: false,
-      signedin: false
+      signedin: false,
+      channelInfo:[],
     };
+    this.channelInfo = [];
+  }
+
+  componentWillMount(){
+    NavModel.getChannelInfo()
+    .then(channelInfo => {
+      this.setState({
+        channelInfo: channelInfo
+      })
+    });
   }
 
   componentDidMount() {
+
+
     NavModel.changeChannel(this.state.channel_id)
     .then(channelObj => {
       this.setState({
@@ -72,6 +85,7 @@ export default class App extends React.Component {
       <div>
         <header>
           <NavBar
+            channelInfo = {this.state.channelInfo}
             onMixtapeSelected={ () => {
                 this.setState({ showMixtape: true })
               }
