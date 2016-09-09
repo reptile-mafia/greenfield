@@ -38,8 +38,8 @@ export default class NavBar extends React.Component {
               {
                 this.props.channelInfo.map((channel)=>{
                   return (
-                    <li 
-                      value={channel.id} 
+                    <li
+                      value={channel.id}
                       onClick={(e) => this.handleChange(e.currentTarget.value)}>
                     <a>{channel.name}</a>
                     </li>
@@ -48,17 +48,19 @@ export default class NavBar extends React.Component {
               }
               </ul>
             </li>
-            <li><a href="#" onClick={ (e) => { e.preventDefault(); this.handleMixtape() } }>Mixtape</a></li>
+            { this.props.signedin
+              ? <li><a href="#" onClick={ (e) => { e.preventDefault(); this.handleMixtape() } }>Mixtape</a></li>
+              : null }
           </ul>
 
         </div>
         <div className="medium-6 columns" id="logsign-buttons">
 
-          { this.props.signedin 
-            ? <Logout 
-                user={this.props.user} 
-                declareSignedOut={() => this.props.declareSignedOut()} 
-              /> 
+          { this.props.signedin
+            ? <Logout
+                user={this.props.user}
+                declareSignedOut={() => this.props.declareSignedOut()}
+              />
             : <span>
                 <Login declareSignedIn={(username) => this.props.declareSignedIn(username)}/>
                 <Signup declareSignedIn={(username) => this.props.declareSignedIn(username)} />
