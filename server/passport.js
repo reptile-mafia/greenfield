@@ -1,8 +1,42 @@
 const LocalStrategy   = require('passport-local').Strategy;
+const FacebookStrategy   = require('passport-facebook').Strategy;
 const db = require('./db');
 const bcrypt   = require('bcrypt-nodejs');
 
 var passport = require('passport');
+
+/*
+  ***********************************************************************
+
+  Passport config for local sing in
+
+  ***********************************************************************
+*/
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: "/login-facebook/callback",
+    proxy: true
+  },
+  function(accessToken, refreshToken, profile, done) {
+    db.findUser(profile.displayName)
+      .then(user =>{
+        console.log(user);
+        if (!user) {
+          db.addUser(profile.displayName, "facebook")
+            .then((user)=>{
+            return done(null, user[0]); 
+          });
+        } else {
+          if(user.password === "facebook"){
+            return done(null, user);
+          }
+          return done("Facebook login error", false);
+        }
+      });
+    }
+));
+
 /*
   ***********************************************************************
 
@@ -62,6 +96,7 @@ passport.use('local-signup', new LocalStrategy({
   ***********************************************************************
 */
 passport.serializeUser(function (user, done) {
+  console.log("serialize", user);
     done(null, user.username);
 });
 

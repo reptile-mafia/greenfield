@@ -132,7 +132,7 @@ app.get('/', (req, res) => {
   ***********************************************************************
 */
 
-app.post('/login',
+app.post('/login',    //local
   passport.authenticate('local', {
       successRedirect: '/loginSuccess',
       failureRedirect: '/loginFail'
@@ -143,8 +143,16 @@ app.get('/logout', function (req, res) {
     res.send('logout success');
 });
 
-app.post('/signup',
+app.post('/signup', //local
   passport.authenticate('local-signup', {
+      successRedirect: '/loginSuccess',
+      failureRedirect: '/loginFail'
+}));
+
+app.get('/login-facebook', passport.authenticate('facebook'));
+
+app.get('/login-facebook/callback',
+  passport.authenticate('facebook', { 
       successRedirect: '/loginSuccess',
       failureRedirect: '/loginFail'
 }));
