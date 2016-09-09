@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './Login';
 import Signup from './Signup';
+import Logout from './Logout';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -53,11 +54,16 @@ export default class NavBar extends React.Component {
         </div>
         <div className="medium-6 columns" id="logsign-buttons">
 
-          { this.props.signedin ? <span>"Signed In!!!!!"</span> : null }
-          <Login declareSignedIn={(username) => this.props.declareSignedIn(username)}/>
-
-          <Signup declareSignedIn={(username) => this.props.declareSignedIn(username)} />
-          
+          { this.props.signedin 
+            ? <Logout 
+                user={this.props.user} 
+                declareSignedOut={() => this.props.declareSignedOut()} 
+              /> 
+            : <span>
+                <Login declareSignedIn={(username) => this.props.declareSignedIn(username)}/>
+                <Signup declareSignedIn={(username) => this.props.declareSignedIn(username)} />
+              </span>
+          }
          </div>
         </div>
       </div>

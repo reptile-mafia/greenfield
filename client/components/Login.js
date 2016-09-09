@@ -5,8 +5,8 @@ export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'username',
-      password: 'password',
+      username: '',
+      password: '',
       responseMessage: null,
       errorMessage: null
     };
