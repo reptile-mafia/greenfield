@@ -302,15 +302,13 @@ knex.addVideos = (videosArray, channelId) => {
   ***********************************************************************
 */
 
-knex.createLike = (like) => {
+knex.createLike = (like, userId) => {
   const likeObj = {
     start_time: like.start_time,
     stop_time: like.stop_time,
     video_id: like.video_id,
     channel_id: like.channel_id,
   };
-
-  const userId = like.user_id;
 
   return knex('likes').where(likeObj)
   .then(data => {
@@ -347,7 +345,7 @@ knex.createLike = (like) => {
   ***********************************************************************
 */
 
-knex.updateLike = (obj) =>
+knex.updateLike = (obj, userId) =>{
   knex('likes_by_user').where(obj)
   .then(queryData => {
     if (queryData.length) {
@@ -360,7 +358,7 @@ knex.updateLike = (obj) =>
   .then(userIdArray => ({ id: obj.likes_id, users: userIdArray }))
   .catch(userIdArray =>
     userIdArray.then(idArray => ({ id: obj.likes_id, users: idArray })));
-
+}
 /*
   ***********************************************************************
 

@@ -128,11 +128,11 @@ app.get('/', (req, res) => {
   ***********************************************************************
   Auth through passport
 
-  Response object:  Index.html file
+  Response object:  user onject if success, 500 with error string if fail
   ***********************************************************************
 */
 
-app.post('/login',
+app.post('/login',    //local
   passport.authenticate('local', {
       successRedirect: '/loginSuccess',
       failureRedirect: '/loginFail'
@@ -140,17 +140,24 @@ app.post('/login',
 
 app.get('/logout', function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.send('logout success');
 });
 
-app.post('/signup',
+app.post('/signup', //local
   passport.authenticate('local-signup', {
       successRedirect: '/loginSuccess',
       failureRedirect: '/loginFail'
 }));
 
+app.get('/login-facebook', passport.authenticate('facebook'));
+
+app.get('/login-facebook/callback',
+  passport.authenticate('facebook', { 
+      successRedirect: '/loginSuccess',
+      failureRedirect: '/loginFail'
+}));
+
 app.get('/loginSuccess', isLoggedIn, function(req, res){
-    console.log("LOGIN FAIL",req);
     var result = {
       errorMessage:"", //error message
       username:req.user.username,
@@ -160,8 +167,7 @@ app.get('/loginSuccess', isLoggedIn, function(req, res){
   }
 );
 
-app.get('/loginFail', function(req, res){
-  console.log("LOGIN FAIL",req.session.messages);
+app.get('/loginFail', function(req, res){ // should not get here
     var result = {
       errorMessage:"",
       username:"",
@@ -171,8 +177,7 @@ app.get('/loginFail', function(req, res){
   }
 );
 
-app.all('/testPage', isLoggedIn);
-app.get('/testPage', function(req, res){
+app.get('/testPage', isLoggedIn, function(req, res){
   console.log("print out user info", req.user)
   res.send('You are allow')
 });
@@ -315,8 +320,8 @@ app.get('/channel/:id/likes', (req, res) => {
 
 
 app.post('/likes/create', isLoggedIn, (req, res) => {
-
-  db.createLike(req.body)
+  console.log("LIKE!", req.body, req.user)
+  db.createLike(req.body, req.user.id)
   .then(newLike => {
     res.send(newLike);
   });
@@ -344,7 +349,8 @@ app.post('/likes/create', isLoggedIn, (req, res) => {
 */
 
 app.post('/likes/update', isLoggedIn, (req, res) => {
-  db.updateLike(req.body)
+  console.log("LIKE UPDATE!", req.body, req.user)
+  db.updateLike(req.body, req.user.id)
   .then(newLike => {
     res.send(newLike);
   });
