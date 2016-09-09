@@ -313,7 +313,7 @@ app.get('/channel/:id/likes', (req, res) => {
 
 app.post('/likes/create', isLoggedIn, (req, res) => {
   console.log("LIKE!", req.body, req.user)
-  db.createLike(req.body, req.user)
+  db.createLike(req.body, req.user.id)
   .then(newLike => {
     res.send(newLike);
   });
@@ -341,7 +341,8 @@ app.post('/likes/create', isLoggedIn, (req, res) => {
 */
 
 app.post('/likes/update', isLoggedIn, (req, res) => {
-  db.updateLike(req.body)
+  console.log("LIKE UPDATE!", req.body, req.user)
+  db.updateLike(req.body, req.user.id)
   .then(newLike => {
     res.send(newLike);
   });
