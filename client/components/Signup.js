@@ -72,6 +72,7 @@ export default class SignupPage extends React.Component {
       <div className="dropdown-pane dropdown" id="signup-dropdown" data-dropdown data-auto-focus="true">   
         <div>
           <a className="button ppfa" href="/login-facebook"><i className="fa fa-facebook" /> Login with Facebook</a>
+          <h5 className="orline">&mdash; OR &mdash;</h5>
           <form>
             <label htmlFor="username">Username:</label>
             <input type="text" placeholder="username" onChange={this.handleUsernameChange} />
