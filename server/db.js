@@ -65,7 +65,7 @@ const knex = require('knex')(config[env]);
 /*
   ***********************************************************************
 
-  Returns/Adds user info
+  Find/Add user for login/signup
 
   ***********************************************************************
 */
@@ -83,6 +83,20 @@ knex.findUser = (username, callback) =>{
 knex.addUser = (username, hashPw) =>{
   return knex('users').insert({username: username, password:hashPw}).returning('*');
 };
+
+/*
+  ***********************************************************************
+
+  Returns an array of all channel info
+
+  ***********************************************************************
+*/
+
+knex.getChannelInfo = () =>
+  knex('channels')
+  .then(channels => {
+    return channels;
+  });
 
 /*
   ***********************************************************************

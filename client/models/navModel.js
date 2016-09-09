@@ -19,4 +19,14 @@ NavModel.changeChannel = (channelId) => {
   });
 };
 
+NavModel.getChannelInfo = () => {
+  return $.ajax({
+    url: '/channelInfo',
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 export default NavModel;
