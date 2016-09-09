@@ -61,7 +61,8 @@ export default class SignupPage extends React.Component {
       "url": "/signup",
       "method": "POST",
       "headers": {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       },
       "data": JSON.stringify(userdata)
     }

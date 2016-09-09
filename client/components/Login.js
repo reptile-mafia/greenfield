@@ -41,7 +41,8 @@ export default class LoginPage extends React.Component {
       "url": "/login-facebook",
       "method": "GET",
       "headers": {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       }
     }
 
