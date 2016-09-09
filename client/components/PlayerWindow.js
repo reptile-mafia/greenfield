@@ -3,9 +3,6 @@ import YouTube from 'react-youtube';
 
 import { sendLike, Moment, getMoreVideos } from '../models/videoModel.js';
 
-
-
-
 export default class PlayerWindow extends React.Component {
   constructor(props) {
     super(props);
@@ -328,7 +325,7 @@ export default class PlayerWindow extends React.Component {
 
   // chooses whether to render the "Extreme" button or not
   renderButtons() {
-    return (this.state.channel_id === 0 || this.state.channel_id === 'default')
+    return (!this.props.signedin)
       ? <div className="player-buttons small-6 columns">
         <button className="button alert" onClick={this.handleLame}>
           <i className="fa fa-thumbs-down" />
@@ -341,7 +338,7 @@ export default class PlayerWindow extends React.Component {
           onClick={this.handleExtreme}
         >
           <i className="fa fa-thumbs-up" />
-          {this.state.extreme ? 'Extreme Stop' : 'Extreme Start'}
+          {this.state.extreme ? 'Furry Stop' : 'Furry Start'}
         </button>
         <button className="button alert" onClick={this.handleLame}>
           <i className="fa fa-thumbs-down" />

@@ -78,6 +78,7 @@ export default class App extends React.Component {
     } else {
       return <PlayerWindow
         videos={this.state.videos}
+        signedin={this.state.signedin}
         channel_id={this.state.channel_id}
         user_id="1"
         onVideoChange={ (url) => console.log('PlayerWindow.onVideoChange: ' + url) }/>;
