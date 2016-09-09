@@ -20,6 +20,19 @@ h1, h2 {
   text-shadow: 2px 2px 0px #000;
 }
 
+h3 {
+  font-family: Bangers;
+  color:white;
+  font-weight: 1000;
+
+}
+
+h5 {
+  color:white;
+  font-family: Bangers;
+  font-weight: 80;
+}
+
 .authrow {
   background-color: #225599;
   padding-bottom: 30px;
