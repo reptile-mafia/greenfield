@@ -14,7 +14,6 @@ export default class SignupPage extends React.Component {
     this.handleUsernameChange= this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.facebookLogin = this.facebookLogin.bind(this);
   }
 
   componentWillMount() {
@@ -34,26 +33,6 @@ export default class SignupPage extends React.Component {
     this.setState({password: event.target.value});
   }
 
-  facebookLogin(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "/login-facebook",
-      "method": "GET",
-      "headers": {
-        "content-type": "application/json"
-      }
-    }
-
-    $.ajax(settings)
-    .done( (response) => {
-      this.props.declareSignedIn(response.username);
-    })
-    .fail( (response) => {
-      this.setState({ errorMessage: "Facebook login failed" });
-    });
-  }
-
   attemptSignup(userdata){
     var settings = {
       "async": true,
@@ -61,7 +40,8 @@ export default class SignupPage extends React.Component {
       "url": "/signup",
       "method": "POST",
       "headers": {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       },
       "data": JSON.stringify(userdata)
     }
@@ -91,7 +71,7 @@ export default class SignupPage extends React.Component {
       <button className="logsub" type="button" data-toggle="signup-dropdown">Signup</button>
       <div className="dropdown-pane dropdown" id="signup-dropdown" data-dropdown data-auto-focus="true">   
         <div>
-          <button className="ppfa" onClick={this.facebookLogin}><i className="fa fa-facebook" /> Login with Facebook</button>
+          <a className="button ppfa" href="/login-facebook"><i className="fa fa-facebook" /> Login with Facebook</a>
           <form>
             <label htmlFor="username">Username:</label>
             <input type="text" placeholder="username" onChange={this.handleUsernameChange} />
