@@ -14,6 +14,7 @@ export default class SignupPage extends React.Component {
     this.handleUsernameChange= this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.facebookLogin = this.facebookLogin.bind(this);
   }
 
   componentWillMount() {
@@ -31,6 +32,26 @@ export default class SignupPage extends React.Component {
 
   handlePasswordChange(event) {
     this.setState({password: event.target.value});
+  }
+
+  facebookLogin(){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "/login-facebook",
+      "method": "GET",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+
+    $.ajax(settings)
+    .done( (response) => {
+      this.props.declareSignedIn(response.username);
+    })
+    .fail( (response) => {
+      this.setState({ errorMessage: "Facebook login failed" });
+    });
   }
 
   attemptSignup(userdata){
@@ -67,9 +88,10 @@ export default class SignupPage extends React.Component {
   render() {
     return (
       <span>
-      <button className="button" type="button" data-toggle="signup-dropdown">Signup</button>
+      <button className="logsub" type="button" data-toggle="signup-dropdown">Signup</button>
       <div className="dropdown-pane dropdown" id="signup-dropdown" data-dropdown data-auto-focus="true">   
         <div>
+          <button className="ppfa" onClick={this.facebookLogin}><i className="fa fa-facebook" /> Login with Facebook</button>
           <form>
             <label htmlFor="username">Username:</label>
             <input type="text" placeholder="username" onChange={this.handleUsernameChange} />

@@ -46,7 +46,9 @@ h5 {
   text-align: right;
 }
 
-#logsign-buttons button {
+.logsub {
+  background-color: #2199e8;
+  color: white;
   margin: 1em;
   padding: .5em 1em;
   border-radius: 5px;
@@ -63,6 +65,17 @@ h5 {
   color: white;
   border: none;
   min-width: 50%;
+  min-height: 2em;
+}
+
+.ppfa {
+  border: none;
+  border-radius: 2px;
+  width: 100%;
+  min-height: 2.5em;
+  background-color: #3b5998;
+  color: white;
+  margin: 8px auto;
 }
 
 .errorMessage {
