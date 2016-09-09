@@ -4,6 +4,7 @@ import MixtapePlayer from './MixtapePlayer';
 import NavBar from './NavBar';
 import Login from './Login';
 import Signup from './Signup';
+import AddVideo from './AddVideo';
 import NavModel from '../models/navModel';
 import VideoDescription from './videoDetails';
 
@@ -81,15 +82,21 @@ export default class App extends React.Component {
         }}/>
       );
     } else {
-      return <PlayerWindow
-        videos={this.state.videos}
-        signedin={this.state.signedin}
-        channel_id={this.state.channel_id}
-        user_id="1"
-        onVideoChange={ (url) => {
-          this.setState({ videoUrl: url });
-          console.log('onVideoChange: ', url);
-        }}/>;
+      return (
+        <div>
+          <AddVideo channelId={this.state.channel_id} />
+          <PlayerWindow
+            videos={this.state.videos}
+            signedin={this.state.signedin}
+            channel_id={this.state.channel_id}
+            user_id="1"
+            onVideoChange={ (url) => {
+              this.setState({ videoUrl: url });
+              console.log('onVideoChange: ', url);
+            }}
+          />
+        </div>
+      );
     }
   }
 
