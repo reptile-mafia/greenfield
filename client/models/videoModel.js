@@ -75,9 +75,9 @@ export const getMoreVideos = (channelId) =>
   });
 
 //get video description
-export const getDescription = (videoId) =>
+export const getDescription = (url) =>
     $.ajax({
-    url: `/test/${videoID}`,
+    url: '/test/'+ url,
     method:'GET',
     headers: {
       'content-Type':'application/json',

@@ -6,10 +6,12 @@ export default class VideoDescription extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			video_Id : ''
+			url : ''
 		}
 
-		getDescription( this.props.video_Id )
+		
+
+		getDescription(props.url)
 			.then( title => {
 				this.setState = ({
 					title: title
@@ -24,7 +26,8 @@ export default class VideoDescription extends React.Component {
 			<div>
 				
 				<div className= "details">
-					<div>Title {this.state.title}</div>
+					
+					<Title/>
 					<div>Description</div>
 				</div>
 			</div>
