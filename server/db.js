@@ -109,6 +109,7 @@ knex.getChannelInfo = () =>
 knex.getVideosByChannel = (channelId) =>
   knex('videos').where('channel_id', channelId)
   .then(videos => {
+    
     const videosArray = videos;
     videos.forEach((video, index) => {
       videosArray[index].time_based_likes = [];
@@ -232,6 +233,7 @@ knex.getChannelById = (channelId) => {
   // Build channel object by channel id
   return knex.getLikesByChannel(channelId)
   .then(likes => {
+
     likesArray = likes;
     return knex.getVideosByChannel(channelId);
   })
@@ -260,11 +262,13 @@ knex.getChannelById = (channelId) => {
   ***********************************************************************
 */
 
+//LOOK AT THIS
 knex.addVideos = (videosArray, channelId) => {
   let successMessage = '';
   let videos = [];
-
+ 
   return Promise.all(
+
     videosArray.map(video => knex('videos').where('url', video.id.videoId))
   )
   .then(videosInDB => {
@@ -370,12 +374,15 @@ knex.initDB = () => Promise.all([
     { id: 1, name: 'Kittens', background: 'https://static.pexels.com/photos/9056/pexels-photo.jpg' },
     { id: 2, name: 'Cats Being Jerks', background: 'https://texasagriculture.gov/portals/0/images/prodagg/fire.jpg' },
     { id: 3, name: 'Neko', background: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/The_Great_Wave_off_Kanagawa.jpg' },
+
   ]),
   knex('users').insert([
     { username: 'CDE'   , password: '$2a$08$Nxke/Uo4lyszdj8HOQyB0eYL/XRMx2MbgvPELLBiEBd9BHEfplLde'},
     { username: 'CHI'   , password: '$2a$08$RdRSvizmfF9BH1VnCWh.yeIOYryIcFKbPVWXp2JyFv2Z9OFmdf71O'},
   ]),
   knex('videos').insert([
+
+
     { url: 'mmjlMgDSYFo', channel_id: 1 },
     { url: 'OtRRUEs3o0c', channel_id: 1 },
     { url: 'LI7-Cu-9wWM', channel_id: 1 },
@@ -385,6 +392,7 @@ knex.initDB = () => Promise.all([
     { url: 'TdPuwnMv3gA', channel_id: 3 },  // 3 is japanese cat
     { url: 'C9O28ne6bG8', channel_id: 3 },
     { url: 'JTDdHYUb6zU', channel_id: 3 },
+
   ]),
   knex('likes').insert([
     { start_time: 23, stop_time: 48, video_id: 1, channel_id: 1 },

@@ -1,7 +1,10 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+
 import { sendLike, Moment, getMoreVideos } from '../models/videoModel.js';
-// import $ from '../models/lib/jquery';
+
+
+
 
 export default class PlayerWindow extends React.Component {
   constructor(props) {
@@ -54,6 +57,7 @@ export default class PlayerWindow extends React.Component {
       this.updateVideoList(this.props.videos);
     }
   }
+  
 
   // new videos are added if video list reaches a specific length
   checkVideoListLength(list) {
@@ -284,6 +288,8 @@ export default class PlayerWindow extends React.Component {
     this.player.seekTo(seekTime, true);
   }
 
+
+
   // render either a spinner or youtube component
   renderVideo() {
     const opts = {
@@ -302,6 +308,10 @@ export default class PlayerWindow extends React.Component {
     if (!this.state.currentVideo.url) {
       return <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />;
     }
+
+   
+  
+
 
     return (
       <YouTube
@@ -355,6 +365,7 @@ export default class PlayerWindow extends React.Component {
               onMouseDown={this.handleMouseDown}
               onMouseUp={this.handleMouseUp}
             />
+
           </div>
         </section>
 
@@ -367,7 +378,9 @@ export default class PlayerWindow extends React.Component {
           </div>
           { this.renderButtons() }
         </section>
+        
       </div>
+
     );
   }
 }

@@ -237,7 +237,7 @@ app.get('/channelInfo', function(req, res){
 */
 
 app.get('/channel/:id', (req, res) => {
-  // Build channel object for response
+  // Build channel object for respon
   if (req.params.id === '1' || req.params.id === '2' || req.params.id === '3') {
     db.getChannelById(req.params.id)
     .then(channelResObj => {
@@ -313,7 +313,9 @@ app.get('/channel/:id/likes', (req, res) => {
   ***********************************************************************
 */
 
+
 app.post('/likes/create', isLoggedIn, (req, res) => {
+
   db.createLike(req.body)
   .then(newLike => {
     res.send(newLike);
@@ -385,8 +387,25 @@ app.get('/db_init', (req, res) => {
     }
   ***********************************************************************
 */
+app.get('/test/:id', (req, res) => {
+  var params = {
+    id: req.params.id + '',
+    part: 'snippet',
+  }
+  youtube.videos.list(params, (err, resp) => {
+    
+    if (err) {
+      res.status(400).send();
+    } else {
+      
+      res.status(200).send(resp.items[0].snippet)
+    }
+  });
+});
+
 
 app.get('/videos/:id', (req, res) => {
+  
   if (req.params.id === '1' || req.params.id === '2' || req.params.id === '3') {
     const randomCriteria = _.shuffle(searchCriteria[req.params.id]);
     const query = `extreme ${randomCriteria[0]} | ${randomCriteria[1]}) -fail -funny -3D`;
@@ -400,15 +419,19 @@ app.get('/videos/:id', (req, res) => {
       videoDimension: '2d',
       videoEmbeddable: 'true',
       part: 'snippet',
+      
     };
 
     youtube.search.list(params, (err, resp) => {
-      console.log("YOUTUBE", err, "RESP", resp);
+
       if (err) {
         res.status(404).send('Search failed.  Youtube\'s fault');
       } else if (resp.items.length) {
+
         db.addVideos(resp.items, req.params.id)
+
         .then((videos) => {
+          
           res.status(200).send(videos);
         });
       } else {
@@ -450,3 +473,4 @@ app.get('/mixtape/user/:id', (req, res) => {
 
 app.listen(serverUrl);
 console.log(serverMessage);
+

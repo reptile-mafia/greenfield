@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 import Login from './Login';
 import Signup from './Signup';
 import NavModel from '../models/navModel';
-// import $ from '../models/lib/jquery';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,6 +66,7 @@ export default class App extends React.Component {
     });
   }
 
+
   renderVideo() {
     if (this.state.showMixtape) {
       return (
@@ -79,6 +80,7 @@ export default class App extends React.Component {
         onVideoChange={ (url) => console.log('PlayerWindow.onVideoChange: ' + url) }/>;
     }
   }
+
 
   render() {
     return (
@@ -98,8 +100,11 @@ export default class App extends React.Component {
 
         <div className="container">
           <div className="row column">
+
             <h2>{ this.state.showMixtape ? 'mixtape' : this.state.channel }</h2>
             { this.renderVideo() }
+
+            
           </div>
         </div>
       </div>
