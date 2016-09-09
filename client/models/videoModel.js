@@ -80,11 +80,16 @@ export const getDescription = (url) =>
     url: '/test/'+ url,
     method:'GET',
     headers: {
-      'content-Type':'application/json',
+      'content-Type': 'application/json',
     },
   });
 
-
-
-
-
+// add a video to a channel in DB
+export const addVideoToChannel = (videoUrl, channelId) =>
+  $.ajax({
+      url: `/channel/${channelId}/video/${videoUrl}`,
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+      },
+  });
