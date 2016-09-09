@@ -25,7 +25,8 @@ export default class VideoDescription extends React.Component {
 		return(
 			<div>
 				<div className= "details">
-					<h2>{ this.state.title }</h2>
+					<h3>{ this.state.title.title }</h3>
+					<h5>{this.state.title.description}</h5>
 				</div>
 			</div>
 		);

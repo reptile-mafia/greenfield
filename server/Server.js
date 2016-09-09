@@ -398,7 +398,7 @@ app.get('/test/:id', (req, res) => {
       res.status(400).send();
     } else {
 
-      res.status(200).send(resp.items[0].snippet.title);
+      res.status(200).send(resp.items[0].snippet);
     }
   });
 });
