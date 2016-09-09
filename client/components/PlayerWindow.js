@@ -7,7 +7,6 @@ export default class PlayerWindow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 'RubberDucky',
       currentVideo: '',
       videoList: [],
       seek: false,
