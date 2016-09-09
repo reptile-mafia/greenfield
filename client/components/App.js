@@ -11,7 +11,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 'Joe',
+      user: '',
       background: '',
       videos: [],
       channel: '',
@@ -48,8 +48,11 @@ export default class App extends React.Component {
   }
 
   declareSignedIn(username){
-    console.log("declaring signed in")
     this.setState({signedin: true, user: username});
+  }
+
+  declareSignedOut(){
+    this.setState({signedin: false, user: ''});
   }
 
   changeChannel(channelId) {
@@ -93,8 +96,10 @@ export default class App extends React.Component {
               }
             }
             signedin={this.state.signedin}
-            changeChannel={ (channelId) => this.changeChannel(channelId) }
+            user={this.state.user}
+            changeChannel={ (channelId) => this.changeChannel(channelId)}
             declareSignedIn={(username) => this.declareSignedIn(username)}
+            declareSignedOut={() => this.declareSignedOut()}
           />
         </header>
 

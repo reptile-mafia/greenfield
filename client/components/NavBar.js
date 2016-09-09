@@ -1,12 +1,12 @@
 import React from 'react';
 import Login from './Login';
 import Signup from './Signup';
+import Logout from './Logout';
 
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 'RubberDucky',
     };
   }
 
@@ -54,17 +54,16 @@ export default class NavBar extends React.Component {
         </div>
         <div className="medium-6 columns" id="logsign-buttons">
 
-          { this.props.signedin ? <span>"Signed In!!!!!"</span> : null }
-          <button className="button" type="button" data-toggle="login-dropdown">Login</button>
-          <div className="dropdown-pane dropdown" id="login-dropdown" data-dropdown data-auto-focus="true">
-          <Login declareSignedIn={(username) => this.props.declareSignedIn(username)}/>
-          </div>
-
-          <button className="button" type="button" data-toggle="signup-dropdown">Signup</button>
-          <div className="dropdown-pane dropdown" id="signup-dropdown" data-dropdown data-auto-focus="true">
-          <Signup declareSignedIn={(username) => this.props.declareSignedIn(username)} />
-          </div>
-          
+          { this.props.signedin 
+            ? <Logout 
+                user={this.props.user} 
+                declareSignedOut={() => this.props.declareSignedOut()} 
+              /> 
+            : <span>
+                <Login declareSignedIn={(username) => this.props.declareSignedIn(username)}/>
+                <Signup declareSignedIn={(username) => this.props.declareSignedIn(username)} />
+              </span>
+          }
          </div>
         </div>
       </div>
