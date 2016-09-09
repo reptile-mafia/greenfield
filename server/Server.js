@@ -154,7 +154,7 @@ app.get('/loginSuccess', isLoggedIn, function(req, res){
     var result = {
       errorMessage:"", //error message
       username:req.user.username,
-      isSuccessful: true 
+      isSuccessful: true
     }
     res.send(result);
   }
@@ -163,9 +163,9 @@ app.get('/loginSuccess', isLoggedIn, function(req, res){
 app.get('/loginFail', function(req, res){
   console.log("LOGIN FAIL",req.session.messages);
     var result = {
-      errorMessage:"", 
+      errorMessage:"",
       username:"",
-      isSuccessful: false 
+      isSuccessful: false
     }
     res.send(result);
   }
@@ -393,19 +393,19 @@ app.get('/test/:id', (req, res) => {
     part: 'snippet',
   }
   youtube.videos.list(params, (err, resp) => {
-    
+
     if (err) {
       res.status(400).send();
     } else {
-      
-      res.status(200).send(resp.items[0].snippet)
+
+      res.status(200).send(resp.items[0].snippet.title);
     }
   });
 });
 
 
 app.get('/videos/:id', (req, res) => {
-  
+
   if (req.params.id === '1' || req.params.id === '2' || req.params.id === '3') {
     const randomCriteria = _.shuffle(searchCriteria[req.params.id]);
     const query = `extreme ${randomCriteria[0]} | ${randomCriteria[1]}) -fail -funny -3D`;
@@ -419,7 +419,7 @@ app.get('/videos/:id', (req, res) => {
       videoDimension: '2d',
       videoEmbeddable: 'true',
       part: 'snippet',
-      
+
     };
 
     youtube.search.list(params, (err, resp) => {
@@ -431,7 +431,7 @@ app.get('/videos/:id', (req, res) => {
         db.addVideos(resp.items, req.params.id)
 
         .then((videos) => {
-          
+
           res.status(200).send(videos);
         });
       } else {
@@ -473,4 +473,3 @@ app.get('/mixtape/user/:id', (req, res) => {
 
 app.listen(serverUrl);
 console.log(serverMessage);
-

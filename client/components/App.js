@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Login from './Login';
 import Signup from './Signup';
 import NavModel from '../models/navModel';
+import VideoDescription from './videoDetails';
 
 
 export default class App extends React.Component {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
       showMixtape: false,
       signedin: false,
       channelInfo:[],
+      videoUrl: '',
     };
     this.channelInfo = [];
   }
@@ -73,7 +75,10 @@ export default class App extends React.Component {
   renderVideo() {
     if (this.state.showMixtape) {
       return (
-        <MixtapePlayer onVideoChange={ (url) => console.log(url) }/>
+        <MixtapePlayer onVideoChange={ (url) => {
+          this.setState({ videoUrl: url });
+          console.log('onVideoChange: ', url);
+        }}/>
       );
     } else {
       return <PlayerWindow
@@ -81,7 +86,10 @@ export default class App extends React.Component {
         signedin={this.state.signedin}
         channel_id={this.state.channel_id}
         user_id="1"
-        onVideoChange={ (url) => console.log('PlayerWindow.onVideoChange: ' + url) }/>;
+        onVideoChange={ (url) => {
+          this.setState({ videoUrl: url });
+          console.log('onVideoChange: ', url);
+        }}/>;
     }
   }
 
@@ -103,14 +111,11 @@ export default class App extends React.Component {
             declareSignedOut={() => this.declareSignedOut()}
           />
         </header>
-
         <div className="container">
           <div className="row column">
-
             <h2>{ this.state.showMixtape ? 'mixtape' : this.state.channel }</h2>
             { this.renderVideo() }
-
-            
+            <VideoDescription url={ this.state.videoUrl } />
           </div>
         </div>
       </div>
