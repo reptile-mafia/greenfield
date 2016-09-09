@@ -72,6 +72,7 @@ h1, h2 {
   margin: 0 auto;
 }
 
+/*
 .addVideoForm {
   margin: 0;
   padding: 0;
@@ -80,7 +81,7 @@ h1, h2 {
 .addVideoForm input {
   display: inline;
 }
-
+*/
 
 .flex-video {
   background: #000;

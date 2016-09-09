@@ -84,7 +84,6 @@ export default class App extends React.Component {
     } else {
       return (
         <div>
-          <AddVideo channelId={this.state.channel_id} />
           <PlayerWindow
             videos={this.state.videos}
             signedin={this.state.signedin}
@@ -94,6 +93,7 @@ export default class App extends React.Component {
               this.setState({ videoUrl: url });
               console.log('onVideoChange: ', url);
             }}
+            <AddVideo channelId={this.state.channel_id} />
           />
         </div>
       );
